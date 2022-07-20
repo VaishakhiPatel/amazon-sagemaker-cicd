@@ -28,7 +28,7 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
     Returns:
         None
     """
-    object_key = f'{prefix}/reports.csv'
+    object_key = f'reports.csv'
 
     s3 = boto3.resource('s3')
 
@@ -42,13 +42,13 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
         if e.response['Error']['Code'] == '404':
             columns = ['date_time', 'hyperparameters', 'commit_hash',
                        'training_job_name'] + list(metrics_dictionary.keys())
-            pd.DataFrame(columns=columns).to_csv('./reports.csv', index=False)
+            pd.DataFrame(columns=columns).to_csv('reports.csv', index=False)
 
             # Upload template reports df
-            s3.Bucket(bucket_name).upload_file('./reports.csv', object_key)
+            s3.Bucket(bucket_name).upload_file('reports.csv', object_key)
 
             # Load reports df
-            reports_df = pd.read_csv('./reports.csv')
+            reports_df = pd.read_csv('reports.csv')
 
         else:
             raise
@@ -64,8 +64,8 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
     reports_df = reports_df.append(new_report)
 
     # Upload new reports dataframe
-    reports_df.to_csv('./reports.csv', index=False)
-    s3.Bucket(bucket_name).upload_file('./reports.csv', object_key)
+    reports_df.to_csv('reports.csv', index=False)
+    s3.Bucket(bucket_name).upload_file('reports.csv', object_key)
 
 
 # Define main training function
