@@ -39,7 +39,7 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
         reports_df = pd.read_csv('reports.csv')
 
     except :
-        try:
+        
             columns = ['date_time', 'hyperparameters', 'commit_hash',
                        'training_job_name'] + list(metrics_dictionary.keys())
             pd.DataFrame(columns=columns).to_csv('reports.csv', index=False)
@@ -50,8 +50,7 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
             # Load reports df
             reports_df = pd.read_csv('reports.csv')
 
-        except:
-            raise
+        
 
     # Add new report to reports.csv
     # Use UTC time to avoid timezone heterogeneity
