@@ -28,7 +28,7 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
     Returns:
         None
     """
-    object_key = f'reports.csv'
+    object_key = 'reports.csv'
 
     s3 = boto3.resource('s3')
 
