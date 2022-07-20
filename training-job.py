@@ -23,14 +23,14 @@ ACCOUNT_ID = session.boto_session.client(
 training_instance = 'ml.m5.large'
 
 # Replace with your data s3 path
-training_data_s3_uri = 's3://{}/{}/boston-housing-training.csv'.format(
-    BUCKET_NAME, PREFIX)
-validation_data_s3_uri = 's3://{}/{}/boston-housing-validation.csv'.format(
-    BUCKET_NAME, PREFIX)
+training_data_s3_uri = 's3://{}/boston-housing-training.csv'.format(
+    BUCKET_NAME)
+validation_data_s3_uri = 's3://{}/boston-housing-validation.csv'.format(
+    BUCKET_NAME)
 
 
-output_folder_s3_uri = 's3://{}/{}/output/'.format(BUCKET_NAME, PREFIX)
-source_folder = 's3://{}/{}/source-folders'.format(BUCKET_NAME, PREFIX)
+output_folder_s3_uri = 's3://{}/output/'.format(BUCKET_NAME)
+source_folder = 's3://{}/source-folders'.format(BUCKET_NAME)
 base_job_name = 'boston-housing-model'
 
 
@@ -61,9 +61,9 @@ training_job_name = boston_estimator.latest_training_job.name
 hyperparameters_dictionary = boston_estimator.hyperparameters()
 
 
-report = pd.read_csv(f's3://{BUCKET_NAME}/{PREFIX}/reports.csv')
+report = pd.read_csv(f's3://{BUCKET_NAME}/reports.csv')
 while(len(report[report['commit_hash']==GITHUB_SHA]) == 0):
-    report = pd.read_csv(f's3://{BUCKET_NAME}/{PREFIX}/reports.csv')
+    report = pd.read_csv(f's3://{BUCKET_NAME}/reports.csv')
 
 res = report[report['commit_hash']==GITHUB_SHA]
 metrics_dataframe = res[['Train_MSE', 'Validation_MSE']]
@@ -71,7 +71,7 @@ metrics_dataframe = res[['Train_MSE', 'Validation_MSE']]
 message = (f"## Training Job Submission Report\n\n"
            f"Training Job name: '{training_job_name}'\n\n"
             "Model Artifacts Location:\n\n"
-           f"'s3://{BUCKET_NAME}/{PREFIX}/output/{training_job_name}/output/model.tar.gz'\n\n"
+           f"'s3://{BUCKET_NAME}/output/{training_job_name}/output/model.tar.gz'\n\n"
            f"Model hyperparameters: {hyperparameters_dictionary}\n\n"
             "See the Logs in a few minute at: "
            f"[CloudWatch](https://{REGION}.console.aws.amazon.com/cloudwatch/home?region={REGION}#logStream:group=/aws/sagemaker/TrainingJobs;prefix={training_job_name})\n\n"
