@@ -11,9 +11,9 @@ import botocore
 initial_instance_count = 1
 endpoint_instance_type = 'ml.m5.large'
 
-BUCKET_NAME = 'sample-sagemaker-cicd-tuto1'
-PREFIX = 'bouston-housing-regression'
-OBJECT_KEY = f'{PREFIX}/reports.csv'
+BUCKET_NAME = 'sagemaker-studio-x8u3abons8g'
+PREFIX = ''
+OBJECT_KEY = f'reports.csv'
 
 s3 = boto3.resource('s3')
 
@@ -40,6 +40,6 @@ attached_predictor = attached_estimator.deploy(initial_instance_count=initial_in
                                                instance_type=endpoint_instance_type,
                                                endpoint_name=latest_training_job_name,
                                                tags=[{"Key": "email",
-                                                      "Value": "ali@datachef.co"}],
+                                                      "Value": "vaishakhipatel05@gmail.com"}],
                                                wait=False)
 print(attached_predictor.endpoint_name)
