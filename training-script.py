@@ -38,9 +38,10 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
 
         # Load reports df
         reports_df = pd.read_csv('reports.csv')
-
+        print("Here it is------>>")
     except botocore.exceptions.ClientError as e:
         if e.response['Error']['Code'] == '404':
+            print("Here it is-- IF---->>")
             columns = ['date_time', 'hyperparameters', 'commit_hash',
                        'training_job_name'] + list(metrics_dictionary.keys())
             pd.DataFrame(columns=columns).to_csv('reports.csv', index=False)
@@ -52,11 +53,13 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
             reports_df = pd.read_csv('reports.csv')
 
         else:
+            print("Here it is--ELSE---->>")
             raise
         
 
     # Add new report to reports.csv
     # Use UTC time to avoid timezone heterogeneity
+    print("Here it is--YAYYY---->>")
     date_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
     # Add new row
@@ -72,6 +75,7 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
 
 # Define main training function
 def main():
+    print("-----In Main-------")
     with open('/opt/ml/input/config/hyperparameters.json', 'r') as json_file:
         hyperparameters = json.load(json_file)
         print(hyperparameters)
