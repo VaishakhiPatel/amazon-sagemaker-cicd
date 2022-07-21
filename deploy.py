@@ -9,7 +9,7 @@ import botocore
 
 # Replace with your desired configuration
 initial_instance_count = 1
-endpoint_instance_type = 'ml.t3.medium'
+endpoint_instance_type = 'ml.t2.medium'
 
 BUCKET_NAME = 'cicdecrdeploy'
 PREFIX = ''
