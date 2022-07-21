@@ -9,9 +9,9 @@ import botocore
 
 # Replace with your desired configuration
 initial_instance_count = 1
-endpoint_instance_type = 'ml.m5.large'
+endpoint_instance_type = 'ml.t3.medium'
 
-BUCKET_NAME = 'sagemaker-studio-x8u3abons8g'
+BUCKET_NAME = 'cicdecrdeploy'
 PREFIX = ''
 OBJECT_KEY = f'reports.csv'
 
