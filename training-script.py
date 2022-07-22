@@ -12,6 +12,7 @@ from sklearn.metrics import mean_squared_error
 import boto3
 import botocore
 
+BUCKET_NAME = os.environ['BUCKET_NAME']
 
 def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
                        commit_hash: str, training_job_name: str,
