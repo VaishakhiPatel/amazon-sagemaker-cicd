@@ -91,10 +91,20 @@ def main():
     # Load Data
     training_data_path = '/opt/ml/input/data/training'
     validation_data_path = '/opt/ml/input/data/validation'
-    training_data = pd.read_csv(os.path.join(
-        training_data_path, 'boston-housing-training.csv'))
-    validation_data = pd.read_csv(os.path.join(
-        validation_data_path, 'boston-housing-validation.csv'))
+
+    training_data_s3_uri = 's3://{}/boston-housing-training.csv'.format(
+    BUCKET_NAME)
+    validation_data_s3_uri = 's3://{}/boston-housing-validation.csv'.format(BUCKET_NAME)
+
+
+    training_data = pd.read_csv(training_data_s3_uri)
+    validation_data = pd.read_csv(training_data_s3_uri)
+
+    #old_code
+    # training_data = pd.read_csv(os.path.join(
+    #     training_data_path, 'boston-housing-training.csv'))
+    # validation_data = pd.read_csv(os.path.join(
+    #     validation_data_path, 'boston-housing-validation.csv'))
 
     print(training_data)
     print(validation_data)
