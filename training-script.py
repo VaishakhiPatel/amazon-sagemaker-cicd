@@ -12,7 +12,7 @@ from sklearn.metrics import mean_squared_error
 import boto3
 import botocore
 
-BUCKET_NAME = os.environ['BUCKET_NAME']
+# BUCKET_NAME = os.environ['BUCKET_NAME']
 
 def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
                        commit_hash: str, training_job_name: str,
@@ -138,12 +138,12 @@ def main():
     # Update the Report File
     REGION = os.environ['REGION']
     PREFIX = os.environ['PREFIX']
-    BUCKET_NAME = os.environ['BUCKET_NAME']
+    BUCKET_NAME = 'cicdecrdeploy'
     GITHUB_SHA = os.environ['GITHUB_SHA']
     TRAINING_JOB_NAME = os.environ['TRAINING_JOB_NAME']
 
     update_report_file(metrics_dictionary=metrics_dictionary, hyperparameters=hyperparameters,
-                       commit_hash=GITHUB_SHA, training_job_name=TRAINING_JOB_NAME, prefix=PREFIX, bucket_name=BUCKET_NAME)
+                       commit_hash=GITHUB_SHA, training_job_name=TRAINING_JOB_NAME, prefix='', bucket_name=BUCKET_NAME)
 
 if __name__ == '__main__':
     main()
