@@ -4,7 +4,6 @@ import joblib
 import requests
 import json
 from datetime import datetime, timezone
-from pandas.io.common import EmptyDataError
 
 
 import pandas as pd
@@ -39,6 +38,7 @@ def update_report_file(metrics_dictionary: dict, hyperparameters: dict,
         # Load reports df
         reports_df = pd.read_csv('reports.csv')
         print("Here it is------>>")
+
     except botocore.exceptions.ClientError as e:
         if e.response['Error']['Code'] == '404':
             print("Here it is-- IF---->>")
