@@ -52,8 +52,8 @@ jobs:
         IAM_ROLE_NAME: ${{ secrets.IAM_ROLE_NAME }}
         GITHUB_SHA: ${{ github.sha }}
       run: |
-        /usr/bin/python3 -m pip install --upgrade pip
+        python -m pip install --upgrade pip
         pip install --no-cache-dir --upgrade awscli pandas boto3 sagemaker requests fsspec s3fs tabulate
-        python3 training-job.py
+        python training-job.py
         cat details.txt >> report.md
         cml-send-comment report.md 
