@@ -93,8 +93,8 @@ def main():
     training_data_path = '/opt/ml/input/data/training'
     validation_data_path = '/opt/ml/input/data/validation'
 
-    training_data_s3_uri = 's3://cicdecrdeploy/boston-housing-training.csv'
-    validation_data_s3_uri = 's3://cicdecrdeploy/boston-housing-validation.csv'
+    training_data_s3_uri = 's3://sagemaker-studio-x8u3abons8g/boston-housing-training.csv'
+    validation_data_s3_uri = 's3://sagemaker-studio-x8u3abons8g/boston-housing-validation.csv'
 
 
     training_data = pd.read_csv(training_data_s3_uri)
