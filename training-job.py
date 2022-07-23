@@ -2,12 +2,13 @@
 import requests
 import os
 import pandas as pd
-
 from sagemaker.analytics import TrainingJobAnalytics
 import sagemaker
 from sagemaker.estimator import Estimator
 import boto3
 import s3fs
+
+print("------------------------")
 
 session = sagemaker.Session(boto3.session.Session())
 
