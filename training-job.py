@@ -22,17 +22,22 @@ ACCOUNT_ID = session.boto_session.client(
 # Replace with your desired training instance
 training_instance = 'ml.m5.large'
 
+
+print("-----GITHUB SHA")
+print(GITHUB_SHA)
+
 # Replace with your data s3 path
 training_data_s3_uri = 's3://{}/boston-housing-training.csv'.format(
     BUCKET_NAME)
 validation_data_s3_uri = 's3://{}/boston-housing-validation.csv'.format(
     BUCKET_NAME)
 
-
+print("----------------")
 output_folder_s3_uri = 's3://{}/output/'.format(BUCKET_NAME)
 source_folder = 's3://{}/source-folders'.format(BUCKET_NAME)
 base_job_name = 'boston-housing-model'
 
+print("----------------")
 
 # Define estimator object
 boston_estimator = Estimator(
@@ -57,14 +62,16 @@ boston_estimator = Estimator(
 boston_estimator.fit({'training': training_data_s3_uri,
                       'validation': validation_data_s3_uri}, wait=False)
 
-
+print("----------------")
 training_job_name = boston_estimator.latest_training_job.name
 hyperparameters_dictionary = boston_estimator.hyperparameters()
 
+print("----------------")
 report = pd.read_csv(f's3://{BUCKET_NAME}/reports.csv')
 while(len(report[report['commit_hash']==GITHUB_SHA]) == 0):
     report = pd.read_csv(f's3://{BUCKET_NAME}/reports.csv')
 
+print("----------------")
 res = report[report['commit_hash']==GITHUB_SHA]
 metrics_dataframe = res[['Train_MSE', 'Validation_MSE']]
 
