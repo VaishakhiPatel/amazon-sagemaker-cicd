@@ -138,7 +138,7 @@ def main():
     # Update the Report File
     REGION = os.environ['REGION']
     PREFIX = os.environ['PREFIX']
-    BUCKET_NAME = 'cicdecrdeploy'
+    BUCKET_NAME = 'sagemaker-studio-x8u3abons8g'
     GITHUB_SHA = os.environ['GITHUB_SHA']
     TRAINING_JOB_NAME = os.environ['TRAINING_JOB_NAME']
 

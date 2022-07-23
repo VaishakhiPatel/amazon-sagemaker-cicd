@@ -11,7 +11,7 @@ import botocore
 initial_instance_count = 1
 endpoint_instance_type = 'ml.t2.medium'
 
-BUCKET_NAME = 'sagemaker-studio-x8u3abons8gInfo'
+BUCKET_NAME = 'sagemaker-studio-x8u3abons8g'
 PREFIX = ''
 OBJECT_KEY = f'reports.csv'
 
