@@ -55,9 +55,7 @@ jobs:
         python -m pip install --upgrade pip
         echo "Installing dependencies"
         pip install --no-cache-dir --upgrade awscli pandas boto3 sagemaker joblib scikit-learn botocore requests fsspec s3fs tabulate
-        echo "Running training job now"
-        ${{ steps.setup-python.outputs.python-path }} --version
-        echo "Running training job now "
-        python3 training-job.py
+        echo "Running training job now"   
+        python training-job.py
         cat details.txt >> report.md
         cml-send-comment report.md 
